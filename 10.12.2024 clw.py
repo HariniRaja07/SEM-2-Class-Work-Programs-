@@ -1,40 +1,31 @@
-class Employee:
-    def __init__(self,name,age):
+class Students:
+    def __init__(self,name,age,course):
         self.name=name
         self.age=age
-    def displayEmployeeInfo(self):
-        print(f"Name:{self.name}\nAge:{self.age}")
-
-class Manager(Employee):
-    def __init__(self,name,age,eid):
-        Employee.__init__(self,name,age)
-        self.eid=eid
-    def displayManagerInfo(self):
-        self.displayEmployeeInfo()
-        print(f"Employee Id:{self.eid}")
-
-class Developer(Employee):
-    def __init__(self,name,age,dept):
-        Employee.__init__(self,name,age)
-        self.dept=dept
-    def displayDeveloperInfo(self):
-        print(f"Department:{self.dept}")
-
-class TeamLeader(Manager,Developer):
-    def __init__(self,name,age,eid,dept,teamsize):
-        Manager.__init__(self,name,age,eid)
-        self.dept=dept
-        self.teamsize=teamsize
-    def displayTeamLeaderInfo(self):
-        self.displayManagerInfo()
-        print(f"Department:{self.dept}\nTeamSize:{self.teamsize}")
+        self.course=course
+    def display(self):
+        print(f"Sname:{self.name}\nSage:{self.age}\nScourse:{self.course}")
 
 
-Name=input("Enter your name:")
-Age=int(input("Enter your age:"))
-Eid=input("Enter your EmployeeId:")
-Dept=input("Enter your Department:")
-Teamsize=input("Enter your TeamSize:")
+class Students_Info:
+    def __init__(self,s_mail_id,s_no):
+        self.s_mail_id=s_mail_id
+        self.s_no=s_no
+    def display_info(self):
+        print(f"Smail_id:{self.s_mail_id}\nS_no:{self.s_no}")
 
-details=TeamLeader(Name,Age,Eid,Dept,Teamsize)
-details.displayTeamLeaderInfo()
+    
+class Details(Students,Students_Info):
+    def __init__(self,name,age,course,s_mail_id,s_no,p_mail_id,p_no):
+        super().__init(name,age,course)
+        Students_info.__init__(s_mail_id,s_no)
+        self.p_mail_id=p_mail_id
+        self.p_no=p_no
+    def show(self):
+        self.display()
+        self.display_info()
+        print(f"Pmail_id:{self.p_mail_id}\nPno:{self.p_no}")
+
+
+obj1=Details()
+obj1.show()
